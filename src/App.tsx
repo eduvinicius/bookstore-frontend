@@ -1,13 +1,30 @@
 import './App.css'
-import { Button } from './components/ui/Button'
+import { Header } from './components/Header'
 
 function App() {
+
+  const handleAccount = () => {
+    // Logic for handling "My Account" action
+  }
+
+  const handleLogout = () => {
+    // Logic for handling "Sign Out" action
+  }
+
+  const navigate = (path: string) => {
+    console.log(`Navigating to ${path}`);
+  }
 
   return (
     <>
       <div className="bg-(--gray-700) text-(--gray-100)">
-        <Button>Primary</Button>
-        <Button variant="secondary">Secondary</Button>
+        <Header 
+          onNavigate={(path) => navigate(path)}
+          menuOptions={[
+            { label: "My Account", onClick: () => handleAccount() },
+            { label: "Sign Out", onClick: () => handleLogout(), divider: true }
+          ]}
+        />
       </div>
       <div></div>
     </>
