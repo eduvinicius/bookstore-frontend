@@ -1,13 +1,22 @@
 import { Box } from "@mui/material";
 import { Drawer } from "../ui/Drawer";
-import { Menu, type MenuOption } from "../ui/Menu";
+import { Menu } from "../ui/Menu";
+import type { IMenuOption } from "../../shared/types/menu.types";
+import { useNavigate } from "react-router-dom";
 
-interface HeaderProps {
-  onNavigate?: (path: string) => void;
-  menuOptions?: MenuOption[];
-}
+export function Header() {
 
-export function Header({ onNavigate, menuOptions }: Readonly<HeaderProps>) {
+  const navigate = useNavigate();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
+
+  const menuOptions: IMenuOption[] = [
+    { label: "My Account", onClick: () => { /* Logic for handling "My Account" action */ } },
+    { label: "Sign Out", onClick: () => { /* Logic for handling "Sign Out" action */ }, divider: true }
+  ];
+
   return (
     <Box
       component="header"
@@ -26,7 +35,7 @@ export function Header({ onNavigate, menuOptions }: Readonly<HeaderProps>) {
         zIndex: 1100,
       }}
     >
-      <Drawer onNavigate={onNavigate} />
+      <Drawer onNavigate={handleNavigate} />
 
       <Box sx={{ marginLeft: "auto" }}>
         <Menu options={menuOptions} />

@@ -1,34 +1,29 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Header } from './components/Header'
+import { Home } from './pages/Home'
+import { Books } from './pages/Books'
+import { Bookcases } from './pages/Bookcases'
 
-function App() {
-
-  const handleAccount = () => {
-    // Logic for handling "My Account" action
-  }
-
-  const handleLogout = () => {
-    // Logic for handling "Sign Out" action
-  }
-
-  const navigate = (path: string) => {
-    console.log(`Navigating to ${path}`);
-  }
-
+function AppContent() {
   return (
     <>
-      <div className="bg-(--gray-700) text-(--gray-100)">
-        <Header 
-          onNavigate={(path) => navigate(path)}
-          menuOptions={[
-            { label: "My Account", onClick: () => handleAccount() },
-            { label: "Sign Out", onClick: () => handleLogout(), divider: true }
-          ]}
-        />
-      </div>
-      <div></div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/bookcases" element={<Bookcases />} />
+      </Routes>
     </>
-  )
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
 }
 
 export default App

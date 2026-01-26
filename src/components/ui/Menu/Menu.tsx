@@ -11,19 +11,13 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-
-export interface MenuOption {
-  label: string;
-  icon?: React.ReactNode;
-  onClick: () => void;
-  divider?: boolean;
-}
+import type { IMenuOption } from "../../../shared/types/menu.types";
 
 interface MenuProps {
-  options?: MenuOption[];
+  options?: IMenuOption[];
 }
 
-const defaultOptions: MenuOption[] = [
+const defaultOptions: IMenuOption[] = [
   {
     label: "Profile",
     icon: <PersonIcon fontSize="small" />,
@@ -54,7 +48,7 @@ export function Menu({ options = defaultOptions }: Readonly<MenuProps>) {
     setAnchorEl(null);
   };
 
-  const handleMenuItemClick = (option: MenuOption) => {
+  const handleMenuItemClick = (option: IMenuOption) => {
     option.onClick();
     handleClose();
   };
@@ -95,7 +89,7 @@ export function Menu({ options = defaultOptions }: Readonly<MenuProps>) {
         }}
       >
         {options.map((option, index) => (
-          <div key={index}>
+          <div key={option.label}>
             {option.divider && index > 0 && <Divider />}
             <MenuItem
               onClick={() => handleMenuItemClick(option)}

@@ -11,20 +11,22 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { ROUTES, type Route } from "../../../shared/constants/routes";
+import { ROUTES } from "../../../shared/constants/routes";
+import type { IRoute } from "../../../shared/types/route.types";
 
 interface DrawerProps {
   onNavigate?: (path: string) => void;
 }
 
 export function Drawer({ onNavigate }: Readonly<DrawerProps>) {
+  
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
-  const handleNavigate = (route: Route) => {
+  const handleNavigate = (route: IRoute) => {
     if (onNavigate) {
       onNavigate(route.path);
     }
